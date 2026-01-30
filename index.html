@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para mi preciosa 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    overflow: hidden;
+  }
+
+  .pantalla {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+  }
+
+  /* PANTALLA INICIAL */
+  #inicio h1 {
+    font-size: 2.6em;
+    margin-bottom: 15px;
+    animation: latido 2s infinite;
+  }
+
+  #inicio .osito {
+    font-size: 90px;
+    margin: 20px 0;
+    animation: flotarSuave 3s ease-in-out infinite;
+  }
+
+  button {
+    background: #ff4d6d;
+    border: none;
+    padding: 16px 35px;
+    border-radius: 30px;
+    font-size: 1.2em;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+  }
+
+  button:hover {
+    transform: scale(1.15);
+  }
+
+  /* PANTALLA MENSAJE */
+  #mensaje {
+    display: none;
+  }
+
+  #mensaje h2 {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    animation: aparecer 2s ease;
+  }
+
+  #mensaje p {
+    font-size: 1.2em;
+    max-width: 450px;
+    line-height: 1.6;
+    animation: aparecer 3s ease;
+  }
+
+  /* ELEMENTOS FLOTANTES */
+  .flotante {
+    position: absolute;
+    animation: flotar 7s linear infinite;
+    opacity: 0.9;
+  }
+
+  @keyframes flotar {
+    from {
+      transform: translateY(100vh) scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-10vh) scale(1.6);
+      opacity: 0;
+    }
+  }
+
+  @keyframes aparecer {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes latido {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+
+  @keyframes flotarSuave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- PANTALLA 1 -->
+<div class="pantalla" id="inicio">
+  <h1>Para mi preciosa<br>Maria Palencia 💕</h1>
+  <div class="osito">🧸</div>
+  <button onclick="mostrarMensaje()">Oprime aquí 💖</button>
+</div>
+
+<!-- PANTALLA 2 -->
+<div class="pantalla" id="mensaje">
+  <h2>🎂 Feliz Cumpleaños 🎂</h2>
+  <p>
+    Que este día te recuerde lo linda y valiosa que eres ✨<br><br>
+    Gracias por abrirme un espacio en tu corazón, por permitirme
+    ser parte de tu vida. Hoy quiero desearte un día lleno de
+    sonrisas, abrazos sinceros y momentos lindos 💖<br><br>
+    Que este nuevo año te trate bonito, porque tú te lo mereces todo.
+    La quiero muchísimo 🌷
+  </p>
+</div>
+
+<script>
+function mostrarMensaje() {
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("mensaje").style.display = "flex";
+
+  setInterval(() => {
+    const elemento = document.createElement("div");
+    elemento.classList.add("flotante");
+
+    const opciones = ["❤️", "🧸", "🌸", "💖"];
+    elemento.innerHTML = opciones[Math.floor(Math.random() * opciones.length)];
+
+    elemento.style.left = Math.random() * 100 + "vw";
+    elemento.style.fontSize = (20 + Math.random() * 35) + "px";
+
+    document.body.appendChild(elemento);
+
+    setTimeout(() => {
+      elemento.remove();
+    }, 7000);
+  }, 250);
+}
+</script>
+
+</body>
+</html>
